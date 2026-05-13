@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.PasswordManager.login.dto.LoginDTO;
 import com.example.PasswordManager.login.service.LoginService;
+import com.example.PasswordManager.service.apiResponse.ApiResponseDTO;
+
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -19,8 +21,8 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping
-    public ResponseEntity<String> login(@RequestBody LoginDTO dto) {
-       String result= loginService.login(dto);
+    public ResponseEntity<ApiResponseDTO> login(@RequestBody LoginDTO dto) {
+       ApiResponseDTO result= loginService.login(dto);
         return ResponseEntity.ok(result);
     }
     

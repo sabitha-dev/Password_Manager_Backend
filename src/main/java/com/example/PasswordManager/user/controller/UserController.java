@@ -4,8 +4,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.PasswordManager.service.apiResponse.ApiResponseDTO;
 import com.example.PasswordManager.user.dto.UserDTO;
-import com.example.PasswordManager.user.modal.User;
 import com.example.PasswordManager.user.service.UserService;
+
+import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +21,10 @@ public class UserController {
     private UserService registerService;
 
     @PostMapping
-    public ResponseEntity<ApiResponseDTO> createUser(@RequestBody UserDTO user) {
-        User createUser = registerService.createUser(user);
-        return ResponseEntity.ok(new ApiResponseDTO("User Created Successfully!", createUser));
+    public ResponseEntity<ApiResponseDTO> createUser(@Valid @RequestBody UserDTO user) {
+        System.out.println("innn"+user);
+        ApiResponseDTO result = registerService.createUser(user);
+        return ResponseEntity.ok( result);
     }
 
 }

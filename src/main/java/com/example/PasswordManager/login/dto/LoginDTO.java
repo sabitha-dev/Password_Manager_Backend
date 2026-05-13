@@ -1,7 +1,14 @@
 package com.example.PasswordManager.login.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
 public class LoginDTO {
+    @NotBlank(message = "Email is required")
+         @Email(message = "Email should be valid")
+
     String email;
+    @NotBlank(message = "PAssword is required")
     String password;
 
    public LoginDTO(){}

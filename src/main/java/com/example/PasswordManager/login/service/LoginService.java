@@ -1,11 +1,12 @@
 package com.example.PasswordManager.login.service;
 
-import javax.security.auth.spi.LoginModule;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.PasswordManager.login.dto.LoginDTO;
+import com.example.PasswordManager.service.apiResponse.ApiResponseDTO;
 import com.example.PasswordManager.user.modal.User;
 import com.example.PasswordManager.user.repository.UserRepository;
 
@@ -13,16 +14,23 @@ import com.example.PasswordManager.user.repository.UserRepository;
 public class LoginService {
     @Autowired
     private UserRepository userRepository;
+     @Autowired
+    private PasswordEncoder PasswordEncoder;
    
-    public String login(LoginDTO dto) {
+   public ApiResponseDTO login(LoginDTO dto) {
 
-User user = userRepository.findByEmail(dto.getEmail())
-        .orElseThrow(() -> new RuntimeException("User not found"));
+    User user = userRepository.findByEmail(dto.getEmail()).orElse(null);
 
-        if (!user.getPassword().equals(dto.getPassword())) {
-            throw new RuntimeException("Invalid password");
-        }
-
-        return "Login successful";
+    if (user == null) {
+        return new ApiResponseDTO("User not found!", null);
     }
+
+    boolean match = PasswordEncoder.matches(dto.getPassword(), user.getPassword());
+
+    if (!match) {
+        return new ApiResponseDTO("Invalid Password!", null);
+    }
+
+    return new ApiResponseDTO("Login successful", user.getEmail());
+}
 }
