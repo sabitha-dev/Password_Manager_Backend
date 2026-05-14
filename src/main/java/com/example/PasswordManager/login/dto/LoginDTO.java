@@ -7,9 +7,9 @@ public class LoginDTO {
     @NotBlank(message = "Email is required")
          @Email(message = "Email should be valid")
 
-    String email;
+   private String email;
     @NotBlank(message = "PAssword is required")
-    String password;
+    private String password;
 
    public LoginDTO(){}
 
