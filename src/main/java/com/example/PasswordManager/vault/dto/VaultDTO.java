@@ -1,6 +1,7 @@
 package com.example.PasswordManager.vault.dto;
 
 public class VaultDTO {
+    private Long id;
   private Long userId; 
     private String appName;
     private String loginUsername;
@@ -22,7 +23,12 @@ public class VaultDTO {
  public Long getUserId() {
         return userId;
     }
-
+public void setId(Long id) {
+    this.id = id;
+}
+public Long getId() {
+    return id;
+}
     public void setUserId(Long userId) {
         this.userId = userId;
     }
