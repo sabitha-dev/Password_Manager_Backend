@@ -1,9 +1,11 @@
 package com.example.PasswordManager.vault.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.PasswordManager.service.apiResponse.ApiResponseDTO;
 import com.example.PasswordManager.user.modal.User;
@@ -12,6 +14,7 @@ import com.example.PasswordManager.vault.dto.VaultDTO;
 import com.example.PasswordManager.vault.model.Vault;
 import com.example.PasswordManager.vault.repository.VaultRepository;
 
+@Service
 public class VaultService {
     @Autowired
     private VaultRepository vaultRepository;
@@ -19,15 +22,19 @@ public class VaultService {
     private UserRepository userRepository;
 
     public ApiResponseDTO addVault(VaultDTO dto) {
+User user = userRepository.findById(dto.getUserId())
+        .orElseThrow(() -> new RuntimeException("User not found"));
 
-        Vault vault = new Vault();
+Vault vault = new Vault();
+vault.setUserId(user);  
         vault.setAppName(dto.getAppName());
         vault.setLoginUsername(dto.getLoginUsername());
         vault.setEncryptedPassword(dto.getPassword());
+ vault.setNotes(dto.getNotes());
+    vault.setCreatedAt(LocalDateTime.now());
+      vaultRepository.save(vault);
 
-        Vault savedPassword = vaultRepository.save(vault);
-
-        return new ApiResponseDTO("saved successfully!", savedPassword);
+        return new ApiResponseDTO("saved successfully!");
     }
 
     public ApiResponseDTO getVaultByUserId(Long id) {
@@ -35,7 +42,7 @@ public class VaultService {
         if (!isExistUser.isPresent()) {
             return new ApiResponseDTO("User not found", isExistUser);
         }
-        List<Vault> result = vaultRepository.findAllByUserID(id);
+        List<Vault> result = vaultRepository.findAllByUserId(id);
         return new ApiResponseDTO("Data fetched succesfully!", result);
     }
 

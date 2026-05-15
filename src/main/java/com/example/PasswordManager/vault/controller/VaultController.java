@@ -23,6 +23,7 @@ public class VaultController {
 
     @PostMapping
     public ResponseEntity<ApiResponseDTO> addVault(@RequestBody VaultDTO dto) {
+        System.out.println("inn");
         ApiResponseDTO result=vaultService.addVault(dto);
         return ResponseEntity.ok(result);
     }

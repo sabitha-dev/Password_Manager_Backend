@@ -20,7 +20,7 @@ public class Vault {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User userId;
 
     @Column(name = "app_name", nullable = false)
     private String appName;
@@ -37,6 +37,6 @@ public class Vault {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-  @Column(name = "is_deleted")
+@Column(name = "is_deleted", nullable = false)
 private boolean isDeleted = false;
 }

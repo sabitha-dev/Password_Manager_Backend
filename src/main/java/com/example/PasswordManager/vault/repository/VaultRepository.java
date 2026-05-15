@@ -9,5 +9,5 @@ import com.example.PasswordManager.vault.model.Vault;
 
 @Repository
 public interface VaultRepository extends JpaRepository<Vault,Long> {
-    List<Vault> findAllByUserID(Long id); 
+    List<Vault> findAllByUserId(Long id); 
 }
