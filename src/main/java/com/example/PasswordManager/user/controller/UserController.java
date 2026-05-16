@@ -22,7 +22,6 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<ApiResponseDTO> createUser(@Valid @RequestBody UserDTO user) {
-        System.out.println("innn"+user);
         ApiResponseDTO result = registerService.createUser(user);
         return ResponseEntity.ok( result);
     }
