@@ -27,11 +27,12 @@ protected void doFilterInternal(HttpServletRequest request,
 
     String path = request.getServletPath();
 
-    if (path.startsWith("/login") || path.startsWith("/register")) {
+    if (path.startsWith("/login") ||
+        path.startsWith("/register")) {
         filterChain.doFilter(request, response);
         return;
     }
-
+System.out.println("AUTH HEADER: " + request.getHeader("Authorization"));
     String authHeader = request.getHeader("Authorization");
 
     if (authHeader != null && authHeader.startsWith("Bearer ")) {
@@ -41,9 +42,16 @@ protected void doFilterInternal(HttpServletRequest request,
             String email = jwtUtil.extractEmail(token);
 
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(email, null, null);
+                    new UsernamePasswordAuthenticationToken(
+                            email,
+                            null,
+                            java.util.Collections.emptyList()
+                    );
 
-            authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+            authentication.setDetails(
+                    new WebAuthenticationDetailsSource().buildDetails(request)
+            );
+
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
     }
