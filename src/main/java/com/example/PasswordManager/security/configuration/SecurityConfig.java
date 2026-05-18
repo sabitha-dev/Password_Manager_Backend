@@ -15,19 +15,19 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+   @Bean
+public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        http
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.disable())   
-            .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/login/**", "/register/**").permitAll()
-                    .anyRequest().authenticated()
-            );
+    http
+        .csrf(csrf -> csrf.disable())
+        .cors(cors -> {})   // IMPORTANT: enable Spring CORS support
+        .authorizeHttpRequests(auth -> auth
+            .requestMatchers("/login/**", "/register/**").permitAll()
+            .anyRequest().authenticated()
+        );
 
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+    http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
-        return http.build();
-    }
+    return http.build();
+}
 }

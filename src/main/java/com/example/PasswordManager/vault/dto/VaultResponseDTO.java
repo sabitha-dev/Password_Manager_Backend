@@ -1,31 +1,24 @@
 package com.example.PasswordManager.vault.dto;
 
-public class VaultDTO {
+public class VaultResponseDTO {
+
     private Long id;
     private String appName;
     private String loginUsername;
-    private String password; 
+    private String encryptedPassword;
     private String notes;
 
-    public VaultDTO() {}
-    public VaultDTO(String appName,
-     String loginUsername,
-     String password,
-     String notes) {
-        this.appName=appName;
-        this.loginUsername=loginUsername;
-        this.password=password;
-        this.notes=notes;
-     }
+    public VaultResponseDTO() {
+    }
 
+    public Long getId() {
+        return id;
+    }
 
-public void setId(Long id) {
-    this.id = id;
-}
-public Long getId() {
-    return id;
-}
-    
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getAppName() {
         return appName;
     }
@@ -42,12 +35,12 @@ public Long getId() {
         this.loginUsername = loginUsername;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEncryptedPassword() {
+        return encryptedPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 
     public String getNotes() {

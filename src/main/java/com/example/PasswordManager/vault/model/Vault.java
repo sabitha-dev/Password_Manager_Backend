@@ -3,6 +3,7 @@ package com.example.PasswordManager.vault.model;
 import java.time.LocalDateTime;
 
 import com.example.PasswordManager.user.modal.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,9 +19,10 @@ public class Vault {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User userId;
+    private User user;
 
     @Column(name = "app_name", nullable = false)
     private String appName;
