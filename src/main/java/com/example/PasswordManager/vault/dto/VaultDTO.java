@@ -2,23 +2,30 @@ package com.example.PasswordManager.vault.dto;
 
 public class VaultDTO {
     private Long id;
+    private String siteUrl;
     private String appName;
     private String loginUsername;
     private String password; 
     private String notes;
 
     public VaultDTO() {}
-    public VaultDTO(String appName,
+    public VaultDTO(String siteUrl,String appName,
      String loginUsername,
      String password,
      String notes) {
+        this.siteUrl=siteUrl;
         this.appName=appName;
         this.loginUsername=loginUsername;
         this.password=password;
         this.notes=notes;
      }
 
-
+public void setSiteUrl(String siteUrl) {
+    this.siteUrl = siteUrl;
+}
+public String getSiteUrl() {
+    return siteUrl;
+}
 public void setId(Long id) {
     this.id = id;
 }

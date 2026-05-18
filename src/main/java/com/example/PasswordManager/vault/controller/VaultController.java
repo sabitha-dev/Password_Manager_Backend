@@ -12,7 +12,6 @@
 
     @RestController
     @RequestMapping("/vault")
-    @CrossOrigin(origins = "*")
     public class VaultController {
 
         @Autowired

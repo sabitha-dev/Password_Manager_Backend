@@ -27,6 +27,9 @@ public class Vault {
     @Column(name = "app_name", nullable = false)
     private String appName;
 
+      @Column(name = "site_url", nullable = false)
+    private String siteUrl;
+
     @Column(name = "login_username", nullable = false)
     private String loginUsername;
 

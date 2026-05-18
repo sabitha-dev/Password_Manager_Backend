@@ -7,6 +7,7 @@ public class VaultResponseDTO {
     private String loginUsername;
     private String encryptedPassword;
     private String notes;
+    private String siteUrl;
 
     public VaultResponseDTO() {
     }
@@ -14,7 +15,12 @@ public class VaultResponseDTO {
     public Long getId() {
         return id;
     }
-
+public void setSiteUrl(String siteUrl) {
+    this.siteUrl = siteUrl;
+}
+public String getSiteUrl() {
+    return siteUrl;
+}
     public void setId(Long id) {
         this.id = id;
     }

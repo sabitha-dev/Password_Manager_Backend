@@ -36,6 +36,7 @@ public class VaultService {
 
         Vault vault = new Vault();
         vault.setUser(user);
+        vault.setSiteUrl(dto.getSiteUrl());
         vault.setAppName(dto.getAppName());
         vault.setLoginUsername(dto.getLoginUsername());
         vault.setEncryptedPassword(aesService.encrypt(dto.getPassword()));
@@ -57,6 +58,7 @@ public List<VaultResponseDTO> getVaultListByEmail(String email) {
     return vaults.stream().map(v -> {
         VaultResponseDTO dto = new VaultResponseDTO();
         dto.setId(v.getId());
+    dto.setSiteUrl(v.getSiteUrl());
         dto.setAppName(v.getAppName());
         dto.setLoginUsername(v.getLoginUsername());
         dto.setEncryptedPassword(v.getEncryptedPassword());
