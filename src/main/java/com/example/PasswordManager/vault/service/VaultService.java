@@ -77,6 +77,7 @@ public VaultDTO getVaultById(Long id, String email) {
 
     VaultDTO dto = new VaultDTO();
     dto.setId(vault.getId());
+    dto.setSiteUrl(vault.getSiteUrl());
     dto.setAppName(vault.getAppName());
     dto.setLoginUsername(vault.getLoginUsername());
     dto.setPassword(aesService.decrypt(vault.getEncryptedPassword()));
