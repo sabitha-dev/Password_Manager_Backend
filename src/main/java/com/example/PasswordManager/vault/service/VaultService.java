@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
-import org.springframework.cache.annotation.Cacheable;
 import com.example.PasswordManager.service.apiResponse.ApiResponseDTO;
 import com.example.PasswordManager.user.modal.User;
 import com.example.PasswordManager.user.repository.UserRepository;
